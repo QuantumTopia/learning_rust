@@ -1,8 +1,10 @@
 use std::io;
 mod fibonacci;
+mod generic_sort;
 mod utils;
 mod configuration;
 use fibonacci::fibonacci as fib;
+use generic_sort::generic_sort as gs;
 
 fn main() {
     loop {
@@ -16,6 +18,7 @@ fn main() {
 
         match module_index {
             1 => fib::run_fibonacci(),
+            2 => gs::run_generic_sort(),
             _ => println!("Apologies, this module is unimplemented")
         };
     }
