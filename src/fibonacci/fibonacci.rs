@@ -1,40 +1,43 @@
 use std::io;
 
+use crate::utils::print_utils::mod_print as mod_print;
+
 pub fn run_fibonacci() {
     welcome_message();
     let mut selected_index = process_input();
     provide_result(selected_index);
     loop {
-        println!("Would you like to know another number from the sequence?");
+        mod_print("Would you like to know another number from the sequence? (Use -1 to return back to module selection)");
         selected_index = process_input();
+        if selected_index == -1 { break; }
         provide_result(selected_index);
     }
     
 }
 
 fn welcome_message() -> () {
-    println!("Welcome to the Fibonacci number machine!");
-    println!("");
-    println!("The beginning sequence looks like:");
+    mod_print("Welcome to the Fibonacci number machine!");
+    mod_print("");
+    mod_print("The beginning sequence looks like:");
     let numbers: [i32; 11] = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89];
     let indexes: [i32; 11] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-    println!("{}\t{}", "Numbers: ".to_string(), string_joiner(numbers));
-    println!("{}\t{}", "Indexes: ".to_string(), string_joiner(indexes));
-    println!("");
-    println!("Which Fibonacci number would you like to know?");
+    mod_print(format!("{}\t{}", "Numbers: ", string_joiner(numbers)).as_str());
+    mod_print(format!("{}\t{}", "Indexes: ", string_joiner(indexes)).as_str());
+    mod_print("");
+    mod_print("Which Fibonacci number would you like to know?");
 }
 
 fn process_input() -> i32 {
     let mut fibo_index = String::new();
     let _ = io::stdin().read_line(&mut fibo_index);
     let selected_index = fibo_index.trim().parse::<i32>().unwrap();
-    println!("Your selected index in the Fibonacci sequence is: [{}]", selected_index);
+    if selected_index > 0 { mod_print(format!("Your selected index in the Fibonacci sequence is: [{}]\n", selected_index).as_str()); }
     selected_index
 }
 
 fn provide_result(index: i32) -> () {
     let (suffix, result) = get_fibo_vars(index);
-    println!("The {}{} number of the Fibonacci sequence is {}.", index, suffix, result);
+    mod_print(format!("The {}{} number of the Fibonacci sequence is {}.", index, suffix, result).as_str());
 }
 
 fn get_fibo_vars(index: i32) -> (String, i32) {
