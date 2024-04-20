@@ -1,6 +1,6 @@
 use std::io;
 
-fn main() {
+pub fn run_fibonacci() {
     welcome_message();
     let mut selected_index = process_input();
     provide_result(selected_index);
@@ -14,10 +14,13 @@ fn main() {
 
 fn welcome_message() -> () {
     println!("Welcome to the Fibonacci number machine!");
+    println!("");
     println!("The beginning sequence looks like:");
-    let numbers = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89];
-    let indexes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-    print
+    let numbers: [i32; 11] = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89];
+    let indexes: [i32; 11] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+    println!("{}\t{}", "Numbers: ".to_string(), string_joiner(numbers));
+    println!("{}\t{}", "Indexes: ".to_string(), string_joiner(indexes));
+    println!("");
     println!("Which Fibonacci number would you like to know?");
 }
 
@@ -68,8 +71,8 @@ fn get_nth_fibonacci_number(index: i32) -> i32 {
     result
 }
 
-fn string_joiner(number_array: [i32]) -> String {
-    number_array.into_iter().map(|i| i.to_string()).collect::<String>().join("\t")
+fn string_joiner(number_array: [i32; 11]) -> String {
+    number_array.iter().map(|&x| x.to_string()).collect::<Vec<String>>().join("\t")
 }
 
 
