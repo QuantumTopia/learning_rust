@@ -6,7 +6,6 @@ use crate::utils::print_utils::mod_print as mod_print;
 
 pub fn run_generic_sort() {
     welcome_message();
-    // print_file_contents();
 
     match read_file_into_vector() {
         Ok(mut integers) => {
@@ -19,7 +18,6 @@ pub fn run_generic_sort() {
 
 fn welcome_message() -> () {
     mod_print("Welcome to the Generic sort machine!");
-    mod_print("");
     mod_print("This tool sorts items found in the input/input.txt file");
     mod_print("");
 }
@@ -49,12 +47,11 @@ fn read_file_into_vector() -> Result<Vec<i32>, io::Error> {
     Ok(integers)
 }
 
-fn print_vector(integers: &Vec<i32>) -> () {
-    mod_print("Your file input is:");
-    mod_print(format!("{:?}", integers).as_str());
+fn print_vector(integers: &mut Vec<i32>) -> () {
+    mod_print(format!("Your file input is: {:?}", integers).as_str());
 }
 
 fn print_sorted_vector(integers: &mut Vec<i32>) -> () {
-    mod_print("The contents sorted:");
-    mod_print(format!("{:?}", integers.sort()).as_str());
-}
+    integers.sort();
+    mod_print(format!("Your contents sorted: {:?}", integers).as_str());
+} 
