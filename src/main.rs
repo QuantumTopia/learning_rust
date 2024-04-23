@@ -1,13 +1,9 @@
-use core::num;
 use std::io;
 mod fibonacci;
 mod generic_sort;
 mod examples;
 mod utils;
 mod configuration;
-use fibonacci::fibonacci as fib;
-use generic_sort::generic_sort as gs;
-use examples::examples as exa;
 use configuration::configuration as config;
 
 fn main() {

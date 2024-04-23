@@ -55,3 +55,18 @@ fn print_sorted_vector(integers: &mut Vec<i32>) -> () {
     integers.sort();
     mod_print(format!("Your contents sorted: {:?}", integers).as_str());
 } 
+
+#[cfg(test)]
+mod tests {
+    use crate::generic_sort::generic_sort::print_sorted_vector;
+
+    #[test]
+    fn correct_sorting() {
+        let mut input:  Vec<i32> = vec![5, 1, 3, 2];
+        let result = vec![1, 2, 3, 5];
+
+        print_sorted_vector(&mut input);
+
+        assert_eq!(result, input);
+    }
+}
