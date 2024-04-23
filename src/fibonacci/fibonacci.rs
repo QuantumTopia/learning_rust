@@ -40,7 +40,7 @@ fn provide_result(index: i32) -> () {
     mod_print(format!("The {}{} number of the Fibonacci sequence is {}.", index, suffix, result).as_str());
 }
 
-fn get_fibo_vars(index: i32) -> (String, i32) {
+fn get_fibo_vars(index: i32) -> (String, u64) {
     (get_suffix(index), get_nth_fibonacci_number(index))
 }
 
@@ -54,15 +54,15 @@ fn get_suffix(index: i32) -> String {
     suffix
 }
 
-fn get_nth_fibonacci_number(index: i32) -> i32 {
-    let mut first: i32 = 1;
-    let mut second: i32 = 1;
+fn get_nth_fibonacci_number(index: i32) -> u64 {
+    let mut first: u64 = 1;
+    let mut second: u64 = 1;
     
     let result = match index {
         1 => first,
         2 => second,
         _ => {
-            let mut next: i32 = -1;
+            let mut next: u64 = 0;
             for _ in 3..=index {
                 next = first + second;
                 first = second;

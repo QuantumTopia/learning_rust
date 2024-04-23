@@ -1,38 +1,36 @@
+use crate::fibonacci::fibonacci::run_fibonacci as run_fib;
+use crate::generic_sort::generic_sort::run_generic_sort as run_sort;
+use crate::examples::examples::example_stack as run_examples;
+
 pub static MODULE_SEPARATOR: &str = ">\t";
 
+pub struct Option
+{
+    pub index: u8,
+    pub name: String,
+    pub option_entry: fn() -> (),
+}
 
-// // Import the lazy_static crate for lazy initialization
-// extern crate lazy_static;
-
-// use lazy_static::lazy_static;
-
-// // Define your configuration struct
-// struct Configuration {
-//     // Define configuration fields here
-//     fibonacci_module_name: String,
-//     // Add more configuration fields as needed
-//     generic_sort_module_name: String,
-//     module_separator: String,
-// }
-
-// impl Configuration {
-//     // Initialize the configuration
-//     fn new() -> Configuration {
-//         // Load configuration from environment variables, files, etc.
-//         Configuration {
-//             fibonacci_module_name: String::from("Fibonacci"),
-//             generic_sort_module_name: String::from("Generic sort"),
-//             module_separator: String::from(">\t"),
-//         }
-//     }
-// }
-
-// // Define a lazy-loaded static variable to hold the configuration
-// lazy_static! {
-//     static ref CONFIG: Configuration = Configuration::new();
-// }
-
-// // Function to access the configuration
-// pub fn get_configuration() -> &'static Configuration {
-//     &CONFIG
-// }
+pub fn get_possible_options() -> Vec<Option>
+{
+    let mut options: Vec<Option> = Vec::new();
+    options.push(Option
+    {
+        index: 1,
+        name: String::from("Fibonacci"),
+        option_entry: run_fib,
+    });
+    options.push(Option
+    {
+        index: 2,
+        name: String::from("Generic Sort"),
+        option_entry: run_sort,
+    });
+    options.push(Option
+    {
+        index: 3,
+        name: String::from("Examples"),
+        option_entry: run_examples,
+    });
+    options
+}
